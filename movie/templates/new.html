@@ -214,9 +214,9 @@
                 <!-- Row -->
                 <div class="row">
                     <h3 class="card-title m-b-0 dl">Choose a movie:</h3>
-                        <div id="movie-container">
+                        <div class="card-columns el-element-overlay">
+                        <div id="movie-container"></div>
                         </div>
-
                 </div>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
@@ -332,6 +332,8 @@
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="{% static 'plugins/styleswitcher/jQuery.style.switcher.js' %}"></script>
+    <script src="{% static 'plugins/Magnific-Popup-master/dist/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'plugins/Magnific-Popup-master/dist/jquery.magnific-popup-init.js' %}"></script>
 </body>
 
 </html>
@@ -345,16 +347,18 @@
         success: function(res){
                     var html ='';
                     for (var i = 0; i < res.results.length; i++) {
-                    var title = res.results[i].title;
-                       html+='<a href="/details?movie=' +
-                       title + '">' +
-                       '<img src="http://image.tmdb.org/t/p/w300' +
-                       res.results[i].poster_path +
-                       '" alt="' +
-                       title +
-                       '" id="' +
-                       title +
-                       '" /></a>'
+                    var imgsrc = '"http://image.tmdb.org/t/p/w300' + res.results[i].poster_path + '"';
+                    var link = '"/details?movie=' + res.results[i].title + '"';
+                    html+='<div class="card">'+
+                        '<div class="el-card-item">'+
+                            '<div class="el-card-avatar el-overlay-1">'+
+                                '<a class="image-popup-vertical-fit" href='+link+'> <img src='+imgsrc+' alt="user" /> </a>'+
+                            '</div>'+
+                            '<div class="el-card-content">'+
+                                '<h3 class="box-title">'+ res.results[i].title +'</h3>'+
+                                '<br/> </div>'+
+                        '</div>'+
+                    '</div>';
                     }
                     $('#movie-container').html(html);
         }});
