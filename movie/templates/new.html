@@ -213,11 +213,10 @@
                 <!-- ============================================================== -->
                 <!-- Row -->
                 <div class="row">
-                    <!-- Column -->
-                    <div class="col-lg-4 col-md-5">
+                    <h3 class="card-title m-b-0 dl">Choose a movie:</h3>
                         <div id="movie-container">
                         </div>
-                    </div>
+
                 </div>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
@@ -344,11 +343,19 @@
         context: document.body,
         dataType: 'json',
         success: function(res){
-                    var html = '<ul>';
+                    var html ='';
                     for (var i = 0; i < res.results.length; i++) {
-                       html+='<li>'+res.results[i].title+'</li>';
+                    var title = res.results[i].title;
+                       html+='<a href="/details?movie=' +
+                       title + '">' +
+                       '<img src="http://image.tmdb.org/t/p/w300' +
+                       res.results[i].poster_path +
+                       '" alt="' +
+                       title +
+                       '" id="' +
+                       title +
+                       '" /></a>'
                     }
-                    html+='</ul>';
                     $('#movie-container').html(html);
         }});
 });
