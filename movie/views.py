@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as login2
 from django.shortcuts import render, redirect
 
 from movie.forms import SignUpForm
@@ -18,6 +19,7 @@ def logout(request):
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
+        print (form.errors)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -25,8 +27,8 @@ def signup(request):
             print (username);
             print (raw_password);
             user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('home')
+            login2(request, user)
+            return redirect('login')
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
