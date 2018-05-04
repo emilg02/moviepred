@@ -38,3 +38,9 @@ def new(request):
 
 def manage(request):
     return render(request,'manage.html')
+
+def details(request):
+    tes = request.GET.get("movie")
+    print(tes)
+    return render(request, 'details.html')
+

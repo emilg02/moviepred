@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^new/$', views.new, name='new'),
     url(r'^manage/$', views.manage, name='manage'),
+    url(r'^details/$', views.details, name='details'),
     ##API##
     url(r'^getupcoming/$', tmdb.get_upcoming, name='getupcoming')
 ]
