@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% block content %}
 <html lang="en">
 
 <head>
@@ -211,6 +212,9 @@
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
 
+                Movie name: <span id="movie_name" ></span><br>
+                Sentiment : <span id="movie_sentiment"> Loading...</span>
+
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
@@ -328,3 +332,22 @@
 </body>
 
 </html>
+{% endblock %}
+{% block javascript %}
+  <script>
+    $(document).ready(function(){
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var movie = url.searchParams.get("movie");
+    document.getElementById('movie_name').innerHTML=movie;
+    $.ajax({ url: "/getsentiment?movie=" + movie,
+        context: document.body,
+        dataType: 'json',
+        success: function(res){
+                    document.getElementById('movie_sentiment').innerHTML=res;
+                    }
+	});
+	});
+
+  </script>
+{% endblock %}
