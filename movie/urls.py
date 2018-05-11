@@ -3,6 +3,7 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from movie.core import tmdb
+from movie.core import twitter
 
 urlpatterns = [
     ##VIEWS##
@@ -14,5 +15,7 @@ urlpatterns = [
     url(r'^manage/$', views.manage, name='manage'),
     url(r'^details/$', views.details, name='details'),
     ##API##
-    url(r'^getupcoming/$', tmdb.get_upcoming, name='getupcoming')
+    url(r'^getupcoming/$', tmdb.get_upcoming, name='getupcoming'),
+    url(r'^getsentiment/$', twitter.get_sentiment, name='getsentiment')
+
 ]
