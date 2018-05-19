@@ -17,7 +17,7 @@ def calculate(request):
     print (budget)
     cwd = os.getcwd()
     print(cwd)
-    data = pd.read_csv(cwd + "/movie/core/movies_new.csv")
+    data = pd.read_csv(cwd + "/movie/data/movies_new.csv")
     #Create train dataframes
     msk = np.random.rand(len(data)) < 0.8
     train = data[msk]
