@@ -344,6 +344,10 @@
     name : "",
     id : "",
     sentiment: "",
+    vote_count : "",
+    vote_average : "",
+    popularity : "",
+    budget : ""
     };
     var url_string = window.location.href;
     var url = new URL(url_string);
@@ -355,6 +359,10 @@
     dataType: 'json',
     success: function(res){
                 movie.name = res.title;
+                movie.budget = res.budget;
+                movie.popularity = res.popularity;
+                movie.vote_count = res.vote_count;
+                movie.vote_average = res.vote_average;
                 document.getElementById('movie_name').innerHTML=res.title;
                 document.getElementById('movie_budget').innerHTML=res.budget;
                 document.getElementById('movie_popularity').innerHTML=res.popularity;
@@ -368,6 +376,7 @@
         context: document.body,
         dataType: 'json',
         success: function(res){
+                    movie.sentiment = res;
                     document.getElementById('movie_sentiment').innerHTML=res;
                     }
 	});
@@ -380,7 +389,7 @@
 
 
 	$(document).ajaxStop(function() {
-    // all api calls have finished
+    // all api calls have finished, enable predict button
     alert('done');
     document.getElementById("predict").disabled = false;
     document.getElementById("predict").className = "btn waves-effect waves-light btn-primary";
@@ -390,7 +399,25 @@
 
 
      $('#predict').click(function(){
-       alert('sup');
+
+
+    //calculate regression
+    $.ajax({ url: "/regression?movie=" + movie.name +"&popularity=" + movie.popularity
+    + "&vote_count=" + movie.vote_count+ "&vote_average=" + movie.vote_average + "&budget=" + movie.budget,
+        context: document.body,
+        dataType: 'json',
+        success: function(res){
+           window.location = "/result?movie=" + movie.id +
+          "&popularity=" + movie.popularity +
+          "&vote_count=" + movie.vote_count +
+          "&vote_average=" + movie.vote_average +
+          "&budget=" + movie.budget +
+          "&sentiment=" + movie.sentiment +
+          "&result=" + res;
+                    }
+	});
+
+
     });
 
 

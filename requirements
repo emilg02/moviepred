@@ -1,3 +1,7 @@
 requests
 tweepy
 textblob
+numpy
+pandas
+statsmodels
+scipy

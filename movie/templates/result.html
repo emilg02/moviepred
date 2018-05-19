@@ -166,9 +166,9 @@
                         <li class="nav-small-cap">MENU</li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="/" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
                         </li>
-                        <li class="active"> <a class="has-arrow waves-effect waves-dark" href="/new" aria-expanded="false"><i class="mdi mdi-laptop-windows"></i><span class="hide-menu">New report</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="/new" aria-expanded="false"><i class="mdi mdi-laptop-windows"></i><span class="hide-menu">New report</span></a>
                         </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="/manage" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">Manage reports</span></a>
+                        <li class="active"> <a class="has-arrow waves-effect waves-dark" href="/manage" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">Manage reports</span></a>
                         </li>
                     </ul>
                 </nav>
@@ -198,10 +198,10 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor">New report</h3>
+                        <h3 class="text-themecolor">Dashboard</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">New report</li>
+                            <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
                     </div>
                 </div>
@@ -211,13 +211,14 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <!-- Row -->
-                <div class="row">
-                    <h3 class="card-title m-b-0 dl">Choose a movie:</h3>
-                        <div class="card-columns el-element-overlay">
-                        <div id="movie-container"></div>
-                        </div>
-                </div>
+                Results page, show graphs here<br>
+                Movie name: <span id="movie_name" >Loading...</span><br>
+                Sentiment : <span id="movie_sentiment"> Loading...</span><br>
+                Budget : <span id="movie_budget"> Loading...</span><br>
+                Popularity : <span id="movie_popularity"> Loading...</span><br>
+                Vote count : <span id="movie_votecount"> Loading...</span><br>
+                Vote average: <span id="movie_voteaverage"> Loading...</span><br>
+                <h1> Predicted revenue: <span id="movie_prediction"> Loading...</span></h1>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
@@ -332,38 +333,33 @@
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="{% static 'plugins/styleswitcher/jQuery.style.switcher.js' %}"></script>
-    <script src="{% static 'plugins/Magnific-Popup-master/dist/jquery.magnific-popup.min.js' %}"></script>
-    <script src="{% static 'plugins/Magnific-Popup-master/dist/jquery.magnific-popup-init.js' %}"></script>
 </body>
-
 </html>
 {% endblock %}
 {% block javascript %}
   <script>
-    $(document).ready(function(){
-        $.ajax({ url: "/getupcoming",
-        context: document.body,
-        dataType: 'json',
-        success: function(res){
-                    var html ='';
-                    for (var i = 0; i < res.results.length; i++) {
-                    var imgsrc = '"http://image.tmdb.org/t/p/w300' + res.results[i].poster_path + '"';
-                    var link = '"/details?movie=' + res.results[i].id + '"';
-                    html+='<div class="card">'+
-                        '<div class="el-card-item">'+
-                            '<div class="el-card-avatar el-overlay-1">'+
-                                '<a class="image-popup-vertical-fit" href='+link+'> <img src='+imgsrc+' alt="user" /> </a>'+
-                            '</div>'+
-                            '<div class="el-card-content">'+
-                                '<h3 class="box-title">'+ res.results[i].title +'</h3>'+
-                                '<br/> </div>'+
-                        '</div>'+
-                    '</div>';
-                    }
-                    $('#movie-container').html(html);
-        }});
+$(document).ready(function(){
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var movieid = url.searchParams.get("movie");
+    var movie_budget = url.searchParams.get("budget");
+    var movie_popularity = url.searchParams.get("popularity");
+    var movie_votecount = url.searchParams.get("vote_count");
+    var movie_voteaverage = url.searchParams.get("vote_average");
+    var movie_prediction = url.searchParams.get("result");
+                document.getElementById('movie_name').innerHTML=movieid;
+                document.getElementById('movie_budget').innerHTML=movie_budget;
+                document.getElementById('movie_popularity').innerHTML=movie_popularity;
+                document.getElementById('movie_votecount').innerHTML=movie_votecount;
+                document.getElementById('movie_voteaverage').innerHTML=movie_voteaverage;
+                document.getElementById('movie_prediction').innerHTML=movie_prediction;
+
+	});
 
 
-});
+
+
+
+
   </script>
 {% endblock %}
