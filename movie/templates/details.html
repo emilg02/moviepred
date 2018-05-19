@@ -212,9 +212,13 @@
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
 
-                Movie name: <span id="movie_name" ></span><br>
-                Sentiment : <span id="movie_sentiment"> Loading...</span>
-
+                Movie name: <span id="movie_name" >Loading...</span><br>
+                Sentiment : <span id="movie_sentiment"> Loading...</span><br>
+                Budget : <span id="movie_budget"> Loading...</span><br>
+                Popularity : <span id="movie_popularity"> Loading...</span><br>
+                Vote count : <span id="movie_votecount"> Loading...</span><br>
+                Vote average: <span id="movie_voteaverage"> Loading...</span><br>
+                <button id="predict" type="button" class="btn waves-effect waves-light btn-primary disabled" disabled>Predict</button>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
@@ -336,18 +340,64 @@
 {% block javascript %}
   <script>
     $(document).ready(function(){
+    var movie = {
+    name : "",
+    id : "",
+    sentiment: "",
+    };
     var url_string = window.location.href;
     var url = new URL(url_string);
-    var movie = url.searchParams.get("movie");
-    document.getElementById('movie_name').innerHTML=movie;
-    $.ajax({ url: "/getsentiment?movie=" + movie,
+    movie.id = url.searchParams.get("movie");
+    //document.getElementById('movie_name').innerHTML=movie;
+    //get movie details
+    $.ajax({ url: "/getmoviedetails?movie=" + movie.id,
+    context: document.body,
+    dataType: 'json',
+    success: function(res){
+                movie.name = res.title;
+                document.getElementById('movie_name').innerHTML=res.title;
+                document.getElementById('movie_budget').innerHTML=res.budget;
+                document.getElementById('movie_popularity').innerHTML=res.popularity;
+                document.getElementById('movie_votecount').innerHTML=res.vote_count;
+                document.getElementById('movie_voteaverage').innerHTML=res.vote_average;
+
+
+
+                    //get sentiment
+    $.ajax({ url: "/getsentiment?movie=" + movie.name,
         context: document.body,
         dataType: 'json',
         success: function(res){
                     document.getElementById('movie_sentiment').innerHTML=res;
                     }
 	});
+
+
+                }
 	});
+
+
+
+
+	$(document).ajaxStop(function() {
+    // all api calls have finished
+    alert('done');
+    document.getElementById("predict").disabled = false;
+    document.getElementById("predict").className = "btn waves-effect waves-light btn-primary";
+    });
+
+
+
+
+     $('#predict').click(function(){
+       alert('sup');
+    });
+
+
+	});
+
+
+
 
   </script>
 {% endblock %}

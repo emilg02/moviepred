@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^details/$', views.details, name='details'),
     ##API##
     url(r'^getupcoming/$', tmdb.get_upcoming, name='getupcoming'),
-    url(r'^getsentiment/$', twitter.get_sentiment, name='getsentiment')
+    url(r'^getsentiment/$', twitter.get_sentiment, name='getsentiment'),
+    url(r'^getmoviedetails/$', tmdb.get_details, name='getmoviedetails'),
 
 ]
