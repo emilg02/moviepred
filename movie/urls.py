@@ -5,7 +5,7 @@ from django.contrib.auth import views as auth_views
 from movie.core import tmdb
 from movie.core import twitter
 from movie.core import regression
-
+from movie.core import graph
 urlpatterns = [
     ##VIEWS##
     path('', views.index, name='index'),
@@ -16,10 +16,13 @@ urlpatterns = [
     url(r'^manage/$', views.manage, name='manage'),
     url(r'^details/$', views.details, name='details'),
     url(r'^result/$', views.result, name='result'),
+    url(r'^graphs/$', views.graphs, name='graphs'),
     ##API##
     url(r'^getupcoming/$', tmdb.get_upcoming, name='getupcoming'),
     url(r'^getsentiment/$', twitter.get_sentiment, name='getsentiment'),
     url(r'^getmoviedetails/$', tmdb.get_details, name='getmoviedetails'),
     url(r'^regression/$', regression.calculate, name='calcregression'),
+    ##GRAPHS##
+    url(r'^graphs/3d.png/$', graph.plot3d, name='3dgraph'),
 
 ]
