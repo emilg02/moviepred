@@ -20,7 +20,6 @@
     <link href="{% static 'plugins/chartist-js/dist/chartist.min.css' %}" rel="stylesheet">
     <link href="{% static 'plugins/chartist-js/dist/chartist-init.css' %}" rel="stylesheet">
     <link href="{% static 'plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css' %}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,700" rel="stylesheet">
     <!--This page css - Morris CSS -->
     <link href="{% static 'plugins/c3-master/c3.min.css' %}" rel="stylesheet">
     <!-- Custom CSS -->
@@ -53,7 +52,7 @@
         <header class="topbar">
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
                 <!-- ============================================================== -->
-                <!-- Logo -->
+                <!--  -->
                 <!-- ============================================================== -->
                 <div class="navbar-header">
                     <a class="navbar-brand" href="/">
@@ -165,11 +164,11 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="nav-small-cap">MENU</li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="/" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Results </span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="/" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
                         </li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="/new" aria-expanded="false"><i class="mdi mdi-laptop-windows"></i><span class="hide-menu">New report</span></a>
                         </li>
-                        <li class="active"> <a class="has-arrow waves-effect waves-dark" href="/manage" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">Manage reports</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="/manage" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">Manage reports</span></a>
                         </li>
                     </ul>
                 </nav>
@@ -199,10 +198,10 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor">Results</h3>
+                        <h3 class="text-themecolor">Dashboard</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Results</li>
+                            <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
                     </div>
                 </div>
@@ -212,117 +211,8 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <style>
-                    table {
-                        color: #333;
-                        font-family: Helvetica, Arial, sans-serif;
-                        width: 40% ;
-                        height: 50px;
-                        white-space: nowrap;
-                        border-collapse:separate;
-                        margin: 5px;
-                        border:solid black 1px;
-                        border-radius:6px;
-                        -moz-border-radius:6px;
-
-
-                    }
-
-                    td, th {
-                        border: 1px solid transparent; /* No more visible border */
-                        height: 10px;
-                        transition: all 0.3s;  /* Simple transition for hover effect */
-                        width: 25% ;
-
-
-                    }
-
-                    th {
-                        background: #DFDFDF;  /* Darken header a bit */
-                        font-weight: bold;
-
-                    }
-
-                    .helper-center {
-                    text-align: center;
-                    font-size: 20px;
-                    width: 15%;
-                    }
-
-                    td {
-                        /*background: #FAFAFA; */
-                        text-align: left;
-
-                    }
-
-                    /* Cells in even rows (2,4,6...) are one color
-                    tr:nth-child(even) td { background: #F1F1F1; } */
-
-                    /* Cells in odd rows (1,3,5...) are another (excludes header cells)
-                    tr:nth-child(odd) td { background: #FEFEFE; } */
-
-                    tr td:hover { background: #ADB0B2; color: #FFF; }
-                    /* Hover cell effect! */
-                </style>
-
-               <br/>
-                <img style="width: 50px; height: 50px; vertical-align:middle" alt="Image description" src="{% static 'images/movieName.png' %}" align="left" hspace="15"/>
-                                <table>
-
-                                    <tr>
-                                        <td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px;">Movie name<span/></td>
-                                        <td bgcolor="#FEFEFE"><span style="font-family:Assistant; " id="movie_name" >Loading...</span></td>
-                                    </tr>
-                                </table>
-                <img style="width: 50px; height: 50px;" alt="Image description" src="{% static 'images/sentiment.png' %}" align="left" hspace="15"/>
-                    <table>
-
-                                    <tr>
-                                        <td><span style="font-family:Assistant; font-size:20px;">Sentiment<span/></td>
-                                        <td><span style="font-family:Assistant;" id="movie_sentiment" >Loading...</span></td>
-                                    </tr>
-                    </table>
-                <img style="width: 50px; height: 50px;" alt="Image description" src="{% static 'images/budget.png' %}" align="left" hspace="15"/>
-                    <table>
-
-                                    <tr>
-                                        <td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px;">Budget<span/></td>
-                                        <td bgcolor="#FEFEFE"><span style="font-family:Assistant;" id="movie_budget" >Loading...</span></td>
-                                    </tr>
-                    </table>
-
-                <img style="width: 50px; height: 50px;" alt="Image description" src="{% static 'images/popularity.png' %}" align="left" hspace="15"/>
-                    <table>
-
-                                    <tr>
-                                        <td><span style="font-family:Assistant; font-size:20px;">Popularity<span/></td>
-                                        <td><span style="font-family:Assistant;" id="movie_popularity" >Loading...</span></td>
-                                    </tr>
-                    </table>
-                <img style="width: 50px; height: 50px;" alt="Image description" src="{% static 'images/voteCount.png' %}" align="left" hspace="15"/>
-                    <table>
-
-                                    <tr>
-                                        <td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px;">Vote Count<span/></td>
-                                        <td bgcolor="#FEFEFE"><span style="font-family:Assistant;" id="movie_votecount" >Loading...</span></td>
-                                    </tr>
-                    </table>
-                <img style="width: 50px; height: 50px;" alt="Image description" src="{% static 'images/voteAverage.png' %}" align="left" hspace="15"/>
-                    <table>
-
-                                    <tr>
-                                        <td><span style="font-family:Assistant; font-size:20px;">Vote Average<span/></td>
-                                        <td><span style="font-family:Assistant;" id="movie_voteaverage" >Loading...</span></td>
-                                    </tr>
-                    </table>
-                <img style="width: 50px; height: 50px;" alt="Image description" src="{% static 'images/revenue.png' %}" align="left" hspace="15"/>
-                    <table>
-
-                                    <tr>
-                                        <td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px; ">Predicted Value<span/></td>
-                                        <td class="helper-center" bgcolor="#0079BF" ><b><span style="font-family:Assistant; color:white; text-align:center;" id="movie_prediction" >Loading...</span></b></td>
-                                    </tr>
-                    </table>
+               3d graph:
+                <img src="/graphs/3d.png" />
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
@@ -411,35 +301,13 @@
     <!-- ============================================================== -->
     <script src="{% static 'plugins/styleswitcher/jQuery.style.switcher.js' %}"></script>
 </body>
+
 </html>
 {% endblock %}
 {% block javascript %}
   <script>
-$(document).ready(function(){
-    var url_string = window.location.href;
-    var url = new URL(url_string);
-    var movieid = url.searchParams.get("movie");
-    var movie_budget = url.searchParams.get("budget");
-    var movie_popularity = url.searchParams.get("popularity");
-    var movie_votecount = url.searchParams.get("vote_count");
-    var movie_voteaverage = url.searchParams.get("vote_average");
-    var movie_prediction = url.searchParams.get("result");
-    var movie_sentiment = url.searchParams.get("sentiment");
-                document.getElementById('movie_name').innerHTML=movieid;
-                document.getElementById('movie_budget').innerHTML=movie_budget;
-                document.getElementById('movie_popularity').innerHTML=movie_popularity;
-                document.getElementById('movie_votecount').innerHTML=movie_votecount;
-                document.getElementById('movie_voteaverage').innerHTML=movie_voteaverage;
-                document.getElementById('movie_prediction').innerHTML=movie_prediction;
-                document.getElementById('movie_sentiment').innerHTML=movie_sentiment;
+ $(document).ready( function() {
 
-
-	});
-
-
-
-
-
-
-  </script>
+  });
+</script>
 {% endblock %}
