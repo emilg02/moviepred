@@ -8,10 +8,10 @@ def index(request):
     return render(request, 'home.html')
 
 def login(request):
-    return render(request,'login.html')
+    return render(request, 'login.html')
 
 def logout(request):
-    return render(request,'logout.html')
+    return render(request, 'logout.html')
 
 def signup(request):
     if request.method == 'POST':
@@ -28,10 +28,10 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 def new(request):
-    return render(request,'new.html')
+    return render(request, 'new.html')
 
 def manage(request):
-    return render(request,'manage.html')
+    return render(request, 'manage.html')
 
 def details(request):
     return render(request, 'details.html')
@@ -39,8 +39,6 @@ def details(request):
 def result(request):
     return render(request, 'result.html')
 
-def graphs(request):
-    return render(request, 'graphs.html')
 
 def graph2d(request):
     return render(request, 'graphs/2d.html')

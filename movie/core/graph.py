@@ -4,6 +4,8 @@ from django.http import HttpResponse
 import io
 import movie.core.regression as reg
 import os
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
