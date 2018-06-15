@@ -49,8 +49,8 @@ def plot3d(request):
 
     fit.summary()
 
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
+    fig3d = plt.figure()
+    ax = fig3d.add_subplot(111, projection='3d')
 
     x_surf = np.arange(0, 14000, 2000)  # generate a mesh
     y_surf = np.arange(0, 400000000, 10000000)
@@ -75,10 +75,10 @@ def plot3d(request):
     ax.set_ylabel('budget')
     ax.set_zlabel('revenue')
 
-    canvas=FigureCanvas(fig)
+    canvas=FigureCanvas(fig3d)
     buf = io.BytesIO()
     plt.savefig(buf, format='png')
-    plt.close(fig)
+    plt.close(fig3d)
     response = HttpResponse(buf.getvalue(), content_type='image/png')
     return response
 
@@ -96,8 +96,15 @@ def plot2d(request):
     body_reg.fit(x_values, y_values)
     prediction = body_reg.predict(np.sort(x_values, axis=0))
 
+    fig = plt.figure()
     plt.scatter(x_values, y_values)
     plt.plot(np.sort(x_values, axis=0), prediction)
-    plt.show()
+
+    canvas=FigureCanvas(fig)
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png')
+    plt.close(fig)
+    response = HttpResponse(buf.getvalue(), content_type='image/png')
+    return response
 
 
