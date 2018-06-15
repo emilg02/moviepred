@@ -217,8 +217,25 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-               2d graph:
-                <img src="/graphs/2d.png" />
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                2d graph:<br>
+                <select id="selector" class="selectpicker m-b-20 m-r-10" data-style="btn-primary">
+                     <option data-tokens="popularity">popularity</option>
+                     <option data-tokens="vote_average">vote_average</option>
+                     <option data-tokens="vote_count">vote_count</option>
+                     <option data-tokens="budget">budget</option>
+                </select>
+                <button type="button" id="draw_btn" onclick="drawGraph();" class="btn waves-effect waves-light btn-primary">Draw</button>
+                <br>
+                <img id="graph" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
@@ -312,6 +329,13 @@
 {% endblock %}
 {% block javascript %}
   <script>
+  function drawGraph()
+{
+var type = document.getElementById("selector").value;
+var img = document.getElementById("graph");
+img.src="/graphs/2d.png?type=" + type;
+return false;
+}
  $(document).ready( function() {
 
   });
