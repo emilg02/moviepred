@@ -42,5 +42,11 @@ def result(request):
 def graphs(request):
     return render(request, 'graphs.html')
 
+def graph2d(request):
+    return render(request, 'graphs/2d.html')
+
+def graph3d(request):
+    return render(request, 'graphs/3d.html')
+
 
 
