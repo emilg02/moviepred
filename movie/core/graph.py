@@ -85,13 +85,16 @@ def plot3d(request):
     return response
 
 def plot2d(request):
+    type = request.GET['type']
+    print ("type is")
+    print (type)
     # read data
     cwd = os.getcwd()
     data = pd.read_csv(cwd + "/movie/data/movies_new.csv")
-    data = pd.DataFrame(data, columns=['vote_average', 'revenue'])
+    data = pd.DataFrame(data, columns=[type, 'revenue'])
     data = data[:-3000]
 
-    x_values = data['vote_average'].values[:, np.newaxis]
+    x_values = data[type].values[:, np.newaxis]
     y_values = data['revenue'].values[:, np.newaxis]
 
     body_reg = linear_model.LinearRegression()
@@ -101,7 +104,8 @@ def plot2d(request):
     fig = plt.figure()
     plt.scatter(x_values, y_values)
     plt.plot(np.sort(x_values, axis=0), prediction)
-
+    plt.xlabel(type)
+    plt.ylabel('revenue')
     canvas=FigureCanvas(fig)
     buf = io.BytesIO()
     plt.savefig(buf, format='png')
