@@ -24,5 +24,6 @@ urlpatterns = [
     url(r'^regression/$', regression.calculate, name='calcregression'),
     ##GRAPHS##
     url(r'^graphs/3d.png/$', graph.plot3d, name='3dgraph'),
+    url(r'^graphs2/$', graph.plot2d, name='test'),
 
 ]

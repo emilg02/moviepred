@@ -8,11 +8,15 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
+from sklearn import linear_model
+
 
 def plot3d(request):
     cwd = os.getcwd()
     print(cwd)
     data = pd.read_csv(cwd + "/movie/data/movies_new.csv")
+    data = data[:-3000]
+
     #Create train dataframes
     msk = np.random.rand(len(data)) < 0.8
     train = data[msk]
@@ -48,8 +52,8 @@ def plot3d(request):
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
 
-    x_surf = np.arange(0, 350, 20)  # generate a mesh
-    y_surf = np.arange(0, 60, 4)
+    x_surf = np.arange(0, 14000, 2000)  # generate a mesh
+    y_surf = np.arange(0, 400000000, 10000000)
     x_surf, y_surf = np.meshgrid(x_surf, y_surf)
 
     exog = pd.core.frame.DataFrame({'vote_count': x_surf.ravel(), 'budget': y_surf.ravel()})
@@ -77,5 +81,23 @@ def plot3d(request):
     plt.close(fig)
     response = HttpResponse(buf.getvalue(), content_type='image/png')
     return response
+
+def plot2d(request):
+    # read data
+    cwd = os.getcwd()
+    data = pd.read_csv(cwd + "/movie/data/movies_new.csv")
+    data = pd.DataFrame(data, columns=['vote_average', 'revenue'])
+    data = data[:-3000]
+
+    x_values = data['vote_average'].values[:, np.newaxis]
+    y_values = data['revenue'].values[:, np.newaxis]
+
+    body_reg = linear_model.LinearRegression()
+    body_reg.fit(x_values, y_values)
+    prediction = body_reg.predict(np.sort(x_values, axis=0))
+
+    plt.scatter(x_values, y_values)
+    plt.plot(np.sort(x_values, axis=0), prediction)
+    plt.show()
 
 
