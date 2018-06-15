@@ -1,5 +1,4 @@
 tmdb_id,title,popularity,vote_average,vote_count,budget,revenue,release_date,genres
-19995,Avatar,150.437577,7.2,11800,237000000,2787965087,12/10/2009,"[{""id"": 28, ""name"": ""Action""}, {""id"": 12, ""name"": ""Adventure""}, {""id"": 14, ""name"": ""Fantasy""}, {""id"": 878, ""name"": ""Science Fiction""}]"
 285,Pirates of the Caribbean: At World's End,139.082615,6.9,4500,300000000,961000000,5/19/2007,"[{""id"": 12, ""name"": ""Adventure""}, {""id"": 14, ""name"": ""Fantasy""}, {""id"": 28, ""name"": ""Action""}]"
 206647,Spectre,107.376788,6.3,4466,245000000,880674609,10/26/2015,"[{""id"": 28, ""name"": ""Action""}, {""id"": 12, ""name"": ""Adventure""}, {""id"": 80, ""name"": ""Crime""}]"
 49026,The Dark Knight Rises,112.31295,7.6,9106,250000000,1084939099,7/16/2012,"[{""id"": 28, ""name"": ""Action""}, {""id"": 80, ""name"": ""Crime""}, {""id"": 18, ""name"": ""Drama""}, {""id"": 53, ""name"": ""Thriller""}]"
