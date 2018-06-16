@@ -2,7 +2,12 @@ import statsmodels.formula.api as smf
 import numpy as np
 import pandas as pd
 import json
+from django.shortcuts import render, redirect
+from sklearn.model_selection import train_test_split
+from sklearn import linear_model
 from django.http import HttpResponse
+
+import numpy.ma as ma
 import os
 
 def calculate(request):
@@ -79,3 +84,47 @@ def forward_selected(data, columns, response):
     return model
 
 
+def linearModel(request):
+    cwd = os.getcwd()
+    Dataset = pd.read_csv(cwd + "/movie/data/Dataset.csv")
+    #Train = pd.read_csv(cwd + "/movie/data/LinearTrainingSet.csv")
+    # print df.head()
+
+    #We split our dataset into training and testing sets
+    Train, Test = train_test_split(Dataset, test_size=0.3, shuffle=False)
+
+    #We select the relevant columns for the prediction
+    data_Test = Test[['vote_average', 'budget', 'revenue']]
+    data_Train = Train[['vote_average', 'budget', 'revenue']]
+
+    x_Train = data_Train[['vote_average', 'budget']].values.reshape(-1, 2)
+    y_Train = data_Train['revenue']
+
+    x_Test = data_Test[['vote_average', 'budget']].values.reshape(-1, 2)
+    y_Test = data_Test['revenue']
+    title = Test[['title']]
+
+
+    #Calculate Linear regression
+    ols = linear_model.LinearRegression()
+    model = ols.fit(x_Train, y_Train)
+    output = model.predict(x_Test)
+    output = np.rint(output)
+
+    #Merge all
+    resultDataframe = pd.DataFrame()
+    resultDataframe = title
+    resultDataframe['output'] = output
+    resultDataframe['revenue'] = y_Test
+
+    #The formula to calculate the error : MPE = ((Actual – Forecast) / Actual) x 100)
+    forecast = pd.DataFrame()
+    forecast['percent'] = ((resultDataframe['revenue'] - resultDataframe['output']) / resultDataframe['revenue']) * 100
+    resultDataframe['percent'] = forecast.astype(int)
+
+    #Convert dataframe to JSON file
+    resultDataframe = resultDataframe.iloc[800:]
+    output = resultDataframe.to_json(orient='records')
+
+    #return render(request, 'comparison.html', {'output': output})
+    return HttpResponse(output, content_type="application/json")

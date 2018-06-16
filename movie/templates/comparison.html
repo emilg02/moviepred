@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% block content %}
 <html lang="en">
 
 <head>
@@ -14,11 +15,12 @@
     <title>Movie Prediction</title>
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-    
+
     <!-- chartist CSS -->
     <link href="{% static 'plugins/chartist-js/dist/chartist.min.css' %}" rel="stylesheet">
     <link href="{% static 'plugins/chartist-js/dist/chartist-init.css' %}" rel="stylesheet">
     <link href="{% static 'plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,700" rel="stylesheet">
     <!--This page css - Morris CSS -->
     <link href="{% static 'plugins/c3-master/c3.min.css' %}" rel="stylesheet">
     <!-- Custom CSS -->
@@ -30,6 +32,8 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+
 <![endif]-->
 </head>
 
@@ -66,7 +70,7 @@
                         <!-- Logo text --><span>
                          <!-- dark Logo text -->
                          <img src="{% static 'images/logo-text.png' %}" alt="homepage" class="dark-logo" />
-                         <!-- Light Logo text -->    
+                         <!-- Light Logo text -->
                          <img src="{% static 'images/logo-light-text.png' %}" class="light-logo" alt="homepage" /></span> </a>
                 </div>
                 <!-- ============================================================== -->
@@ -163,13 +167,11 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="nav-small-cap">MENU</li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="/" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="/" aria-expanded="false"><i class="mdi mdi-calculator"></i><span class="hide-menu">Comparison </span></a>
                         </li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="/new" aria-expanded="false"><i class="mdi mdi-laptop-windows"></i><span class="hide-menu">New report</span></a>
                         </li>
                         <li class="active"> <a class="has-arrow waves-effect waves-dark" href="/manage" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">Manage reports</span></a>
-                        </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="/comparison" aria-expanded="false"><i class="mdi mdi-calculator"></i><span class="hide-menu">Comparison </span></a>
                         </li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file-chart"></i><span class="hide-menu">Graphs</span></a>
                             <ul aria-expanded="false" class="collapse">
@@ -205,10 +207,10 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor">Dashboard</h3>
+                        <h3 class="text-themecolor">Comparison</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active">Comparison</li>
                         </ol>
                     </div>
                 </div>
@@ -218,89 +220,102 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <!-- Row -->
-                <div class="row">
-                    <!-- Column -->
-                    <div class="col-lg-4 col-md-5">
-                    </div>
-                </div>
-                <div class="row">
-                    <!-- Column -->
-                    <div class="col-lg-4 col-md-4">
-                        <div class="card card-inverse card-primary">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="m-r-20 align-self-center">
-                                        <h1 class="text-white"><i class="ti-pie-chart"></i></h1></div>
-                                    <div>
-                                        <h3 class="card-title">Bandwidth usage</h3>
-                                        <h6 class="card-subtitle">March  2017</h6> </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-4 align-self-center">
-                                        <h2 class="font-light text-white">50 GB</h2>
-                                    </div>
-                                    <div class="col-8 p-t-10 p-b-20 align-self-center">
-                                        <div class="usage chartist-chart" style="height:65px"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column -->
-                    <!-- Column -->
-                    <div class="col-lg-4 col-md-4">
-                        <div class="card card-inverse card-success">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="m-r-20 align-self-center">
-                                        <h1 class="text-white"><i class="icon-cloud-download"></i></h1></div>
-                                    <div>
-                                        <h3 class="card-title">Download count</h3>
-                                        <h6 class="card-subtitle">March  2017</h6> </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-4 align-self-center">
-                                        <h2 class="font-light text-white">35487</h2>
-                                    </div>
-                                    <div class="col-8 p-t-10 p-b-20 text-right">
-                                        <div class="spark-count" style="height:65px"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column -->
-                    <!-- Column -->
-                    <div class="col-lg-4 col-md-4">
-                        <div class="card">
-                            <img class="" src="{% static 'images/background/weatherbg.jpg' %}" alt="Card image cap">
-                            <div class="card-img-overlay" style="height:110px;">
-                                <h3 class="card-title text-white m-b-0 dl">New Delhi</h3>
-                                <small class="card-text text-white font-light">Sunday 15 march</small>
-                              </div>
-                            <div class="card-body weather-small">
-                                <div class="row">
-                                    <div class="col-8 b-r align-self-center">
-                                        <div class="d-flex">
-                                            <div class="display-6 text-info"><i class="wi wi-day-rain-wind"></i></div>
-                                            <div class="m-l-20">
-                                                <h1 class="font-light text-info m-b-0">32<sup>0</sup></h1>
-                                                <small>Sunny Rainy day</small>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="col-4 text-center">
-                                        <h1 class="font-light m-b-0">25<sup>0</sup></h1> 
-                                        <small>Tonight</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column -->
-                </div>
+                <style>
+                    table {
+                        color: #333;
+                        font-family: Helvetica, Arial, sans-serif;
+                        width: 40% ;
+                        height: 50px;
+                        white-space: nowrap;
+                        border-collapse:separate;
+                        margin: 5px;
+                        border:solid black 1px;
+                        border-radius:6px;
+                        -moz-border-radius:6px;
+
+
+                    }
+
+                    td, th {
+                        border: 1px solid transparent; /* No more visible border */
+                        height: 10px;
+                        transition: all 0.3s;  /* Simple transition for hover effect */
+                        width: 25% ;
+
+
+                    }
+
+                    th {
+                        background: #DFDFDF;  /* Darken header a bit */
+                        font-weight: bold;
+                        text-align: center;
+
+
+                    }
+
+                    .helper-center {
+                    text-align: center;
+                    font-size: 20px;
+                    width: 15%;
+                    }
+
+                    td {
+                        /*background: #FAFAFA; */
+                        text-align: left;
+
+                    }
+
+                    /* Cells in even rows (2,4,6...) are one color
+                    tr:nth-child(even) td { background: #F1F1F1; } */
+
+                    /* Cells in odd rows (1,3,5...) are another (excludes header cells)
+                    tr:nth-child(odd) td { background: #FEFEFE; } */
+
+                    tr td:hover { background: #ADB0B2; color: #FFF; }
+                    /* Hover cell effect! */
+                </style>
+
+
+                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+                <script type="text/javascript">
+                function createTable() {
+
+                        $.ajax({
+                            url: '/linearReg',  //please to modify the url like this: /ControllerName/ActionName
+                            dataType: "json",
+                            success: function (data) {
+                                var trHTML = '';
+                                $.each(data, function (i, item) {
+                                    if (i % 2 == 0)
+                                        trHTML += '<tr><td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px;">' + item.title + "</span>" + '</td><td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px;">' + item.output + "</span>" + '</td><td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px;">' + item.revenue + "</span>" + '</td><td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px;">' + item.percent + "%" + "</span>" + '</td></tr>' ;
+                                    else
+                                        trHTML += '<tr><td><span style="font-family:Assistant; font-size:20px;">' + item.title + "</span>" + '</td><td><span style="font-family:Assistant; font-size:20px;">' + item.output + "</span>" + '</td><td><span style="font-family:Assistant; font-size:20px;">' + item.revenue + "</span>" + '</td><td><span style="font-family:Assistant; font-size:20px;">' + item.percent + "%" + "</span>" + '</td></tr>' ;
+                                });
+                                $('#myTable').append(trHTML);
+
+                            }
+                        });
+
+                    }
+                </script>
+
+
+               <br/>
+                <!--<img style="width: 50px; height: 50px; vertical-align:middle" alt="Image description" src="{% static 'images/movieName.png' %}" align="left" hspace="15"/> -->
+                                <table id="myTable">
+
+                                    <tr>
+                                        <th><span style="font-family:Assistant; color:black; font-weight: bold; font-size:20px;">Title<span/></th>
+                                        <th><span style="font-family:Assistant; color:black; font-weight: bold; font-size:20px;">Forecast<span/></th>
+                                        <th><span style="font-family:Assistant; color:black; font-weight: bold; font-size:20px;">Actual<span/></th>
+                                        <th><span style="font-family:Assistant; color:black; font-weight: bold; font-size:20px;">Percent<span/></th>
+                                    </tr>
+
+                                    <script>createTable();</script>
+
+                                </table>
+
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
@@ -360,7 +375,7 @@
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{% static 'plugins/bootstrap/js/popper.min.js' %}"></script>
     <script src="{% static 'plugins/bootstrap/js/bootstrap.min.js' %}"></script>
-    
+
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="{% static 'js/jquery.slimscroll.js' %}"></script>
     <!--Wave Effects -->
@@ -370,7 +385,7 @@
     <!--stickey kit -->
     <script src="{% static 'plugins/sticky-kit-master/dist/sticky-kit.min.js' %}"></script>
     <script src="{% static 'plugins/sparkline/jquery.sparkline.min.js' %}"></script>
-    
+
     <!--Custom JavaScript -->
     <script src="{% static 'js/custom.min.js' %}"></script>
     <!-- ============================================================== -->
@@ -389,5 +404,5 @@
     <!-- ============================================================== -->
     <script src="{% static 'plugins/styleswitcher/jQuery.style.switcher.js' %}"></script>
 </body>
-
 </html>
+{% endblock %}
