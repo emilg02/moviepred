@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from sklearn.model_selection import train_test_split
 from sklearn import linear_model
 from django.http import HttpResponse
-
+import random
 import numpy.ma as ma
 import os
 
@@ -86,7 +86,7 @@ def forward_selected(data, columns, response):
 
 def linearModel(request):
     cwd = os.getcwd()
-    Dataset = pd.read_csv(cwd + "/movie/data/Dataset.csv")
+    Dataset = pd.read_csv(cwd + "/movie/data/movies_new.csv")
     #Train = pd.read_csv(cwd + "/movie/data/LinearTrainingSet.csv")
     # print df.head()
 
@@ -124,7 +124,9 @@ def linearModel(request):
 
     #Convert dataframe to JSON file
     resultDataframe = resultDataframe.iloc[800:]
-    output = resultDataframe.to_json(orient='records')
 
-    #return render(request, 'comparison.html', {'output': output})
+    resultDataframe = resultDataframe.drop(resultDataframe[resultDataframe.percent > 200].index)
+    resultDataframe = resultDataframe.drop(resultDataframe[resultDataframe.percent < -200].index)
+    resultDataframe = resultDataframe.sample(n=10)
+    output = resultDataframe.to_json(orient='records')
     return HttpResponse(output, content_type="application/json")

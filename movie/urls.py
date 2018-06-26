@@ -6,6 +6,7 @@ from movie.core import tmdb
 from movie.core import twitter
 from movie.core import regression
 from movie.core import graph
+from movie.core import svm
 urlpatterns = [
     ##VIEWS##
     path('', views.index, name='index'),
@@ -25,7 +26,8 @@ urlpatterns = [
     url(r'^getsentiment/$', twitter.get_sentiment, name='getsentiment'),
     url(r'^getmoviedetails/$', tmdb.get_details, name='getmoviedetails'),
     url(r'^regression/$', regression.calculate, name='calcregression'),
-    url(r'^linearReg/$', regression.linearModel, name='linearReg'),
+    url(r'^linearModel/$', regression.linearModel, name='linearModel'),
+    url(r'^svmModel/$', svm.svmModel, name='svmModel'),
 
     ##GRAPHS##
     url(r'^graphs/3d.png/$', graph.plot3d, name='plot3d'),

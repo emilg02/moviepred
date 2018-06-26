@@ -19,7 +19,8 @@
     <!-- chartist CSS -->
     <link href="{% static 'plugins/chartist-js/dist/chartist.min.css' %}" rel="stylesheet">
     <link href="{% static 'plugins/chartist-js/dist/chartist-init.css' %}" rel="stylesheet">
-    <link href="{% static 'plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css' %}" rel="stylesheet">
+    <link href="{% static 'plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css' %}"
+          rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,700" rel="stylesheet">
     <!--This page css - Morris CSS -->
     <link href="{% static 'plugins/c3-master/c3.min.css' %}" rel="stylesheet">
@@ -34,193 +35,238 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 
 
-<![endif]-->
+    <![endif]-->
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
+<!-- ============================================================== -->
+<!-- Preloader - style you can find in spinners.css -->
+<!-- ============================================================== -->
+<div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+    </svg>
+</div>
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div id="main-wrapper">
     <!-- ============================================================== -->
-    <!-- Preloader - style you can find in spinners.css -->
+    <!-- Topbar header - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <div class="preloader">
-        <svg class="circular" viewBox="25 25 50 50">
-            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
-    </div>
-    <!-- ============================================================== -->
-    <!-- Main wrapper - style you can find in pages.scss -->
-    <!-- ============================================================== -->
-    <div id="main-wrapper">
-        <!-- ============================================================== -->
-        <!-- Topbar header - style you can find in pages.scss -->
-        <!-- ============================================================== -->
-        <header class="topbar">
-            <nav class="navbar top-navbar navbar-expand-md navbar-light">
-                <!-- ============================================================== -->
-                <!-- Logo -->
-                <!-- ============================================================== -->
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="/">
-                        <!-- Logo icon --><b>
-                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                            <!-- Dark Logo icon -->
-                            <img src="{% static 'images/logo-icon.png' %}" alt="homepage" class="dark-logo" />
-                            <!-- Light Logo icon -->
-                            <img src="{% static 'images/logo-light-icon.png' %}" alt="homepage" class="light-logo" />
-                        </b>
-                        <!--End Logo icon -->
-                        <!-- Logo text --><span>
+    <header class="topbar">
+        <nav class="navbar top-navbar navbar-expand-md navbar-light">
+            <!-- ============================================================== -->
+            <!-- Logo -->
+            <!-- ============================================================== -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">
+                    <!-- Logo icon --><b>
+                    <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                    <!-- Dark Logo icon -->
+                    <img src="{% static 'images/logo-icon.png' %}" alt="homepage" class="dark-logo"/>
+                    <!-- Light Logo icon -->
+                    <img src="{% static 'images/logo-light-icon.png' %}" alt="homepage" class="light-logo"/>
+                </b>
+                    <!--End Logo icon -->
+                    <!-- Logo text --><span>
                          <!-- dark Logo text -->
-                         <img src="{% static 'images/logo-text.png' %}" alt="homepage" class="dark-logo" />
-                         <!-- Light Logo text -->
-                         <img src="{% static 'images/logo-light-text.png' %}" class="light-logo" alt="homepage" /></span> </a>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Logo -->
-                <!-- ============================================================== -->
-                <div class="navbar-collapse">
-                    <!-- ============================================================== -->
-                    <!-- toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav mr-auto mt-md-0">
-                        <!-- This is  -->
-                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
-                        <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
-                        <!-- ============================================================== -->
-                        <!-- Search -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item hidden-sm-down search-box"> <a class="nav-link hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <form class="app-search">
-                                <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- Messages -->
-                        <!-- ============================================================== -->
-                        <!-- ============================================================== -->
-                        <!-- End Messages -->
-                        <!-- ============================================================== -->
-                    </ul>
-                    <!-- ============================================================== -->
-                    <!-- User profile and search -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav my-lg-0">
-                        <!-- ============================================================== -->
-                        <!-- Comment -->
-                        <!-- ============================================================== -->
-                        <!-- ============================================================== -->
-                        <!-- End Comment -->
-                        <!-- ============================================================== -->
-                        <!-- ============================================================== -->
-                        <!-- Messages -->
-                        <!-- ============================================================== -->
-                        <!-- ============================================================== -->
-                        <!-- End Messages -->
-                        <!-- ============================================================== -->
-                        <!-- ============================================================== -->
-                        <!-- Profile -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static 'images/users/1.jpg' %}" alt="user" class="profile-pic" /></a>
-                            <div class="dropdown-menu dropdown-menu-right scale-up">
-                                <ul class="dropdown-user">
-                                    <li>
-                                        <div class="dw-user-box">
-                                            <div class="u-img"><img src="{% static 'images/users/1.jpg' %}" alt="user"></div>
-                                            <div class="u-text">
-                                                <h4>{{ user.username }}</h4>
-                                                <p class="text-muted">{{ user.email }}</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
-                                        </div>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="/logout"><i class="fa fa-power-off"></i> Logout</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- Language -->
-                        <!-- ============================================================== -->
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- ============================================================== -->
-        <!-- End Topbar header -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <aside class="left-sidebar">
-            <!-- Sidebar scroll-->
-            <div class="scroll-sidebar">
-                <!-- User profile -->
-                <div class="user-profile" style="background: url({% static 'images/background/user-info.jpg' %}) no-repeat;">
-                    <!-- User profile image -->
-                    <div class="profile-img"> <img src="{% static 'images/users/profile.png' %}" alt="user" /> </div>
-                    <!-- User profile text-->
-                    <div class="profile-text"> <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">{{ user.username }}</a>
-                        <div class="dropdown-menu animated flipInY"> <a href="#" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
-                            <div class="dropdown-divider"></div> <a href="/logout" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a> </div>
-                    </div>
-                </div>
-                <!-- End User profile text-->
-                <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                        <li class="nav-small-cap">MENU</li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="/" aria-expanded="false"><i class="mdi mdi-calculator"></i><span class="hide-menu">Comparison </span></a>
-                        </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="/new" aria-expanded="false"><i class="mdi mdi-laptop-windows"></i><span class="hide-menu">New report</span></a>
-                        </li>
-                        <li class="active"> <a class="has-arrow waves-effect waves-dark" href="/manage" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">Manage reports</span></a>
-                        </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file-chart"></i><span class="hide-menu">Graphs</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="/graphs/3d">3d</a></li>
-                                <li><a href="/graphs/2d">2d</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- End Sidebar navigation -->
+                         <img src="{% static 'images/logo-text.png' %}" alt="homepage" class="dark-logo"/>
+                    <!-- Light Logo text -->
+                         <img src="{% static 'images/logo-light-text.png' %}" class="light-logo" alt="homepage"/></span>
+                </a>
             </div>
-            <!-- End Sidebar scroll-->
-            <!-- Bottom points-->
-            <div class="sidebar-footer">
-                <!-- item--><a href="" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
-                <!-- item--><a href="" class="link" data-toggle="tooltip" title="Contact Us"><i class="mdi mdi-gmail"></i></a>
-                <!-- item--><a href="/logout" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a> </div>
-            <!-- End Bottom points-->
-        </aside>
-        <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper  -->
-        <!-- ============================================================== -->
-        <div class="page-wrapper">
             <!-- ============================================================== -->
-            <!-- Container fluid  -->
+            <!-- End Logo -->
             <!-- ============================================================== -->
-            <div class="container-fluid">
+            <div class="navbar-collapse">
                 <!-- ============================================================== -->
-                <!-- Bread crumb and right sidebar toggle -->
+                <!-- toggle and nav items -->
                 <!-- ============================================================== -->
-                <div class="row page-titles">
-                    <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor">Comparison</h3>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Comparison</li>
-                        </ol>
+                <ul class="navbar-nav mr-auto mt-md-0">
+                    <!-- This is  -->
+                    <li class="nav-item"><a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark"
+                                            href="javascript:void(0)"><i class="mdi mdi-menu"></i></a></li>
+                    <li class="nav-item"><a
+                            class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark"
+                            href="javascript:void(0)"><i class="ti-menu"></i></a></li>
+                    <!-- ============================================================== -->
+                    <!-- Search -->
+                    <!-- ============================================================== -->
+                    <li class="nav-item hidden-sm-down search-box"><a
+                            class="nav-link hidden-sm-down text-muted waves-effect waves-dark"
+                            href="javascript:void(0)"><i class="ti-search"></i></a>
+                        <form class="app-search">
+                            <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i
+                                class="ti-close"></i></a></form>
+                    </li>
+                    <!-- ============================================================== -->
+                    <!-- Messages -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- End Messages -->
+                    <!-- ============================================================== -->
+                </ul>
+                <!-- ============================================================== -->
+                <!-- User profile and search -->
+                <!-- ============================================================== -->
+                <ul class="navbar-nav my-lg-0">
+                    <!-- ============================================================== -->
+                    <!-- Comment -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- End Comment -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Messages -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- End Messages -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Profile -->
+                    <!-- ============================================================== -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href=""
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                                src="{% static 'images/users/1.jpg' %}" alt="user" class="profile-pic"/></a>
+                        <div class="dropdown-menu dropdown-menu-right scale-up">
+                            <ul class="dropdown-user">
+                                <li>
+                                    <div class="dw-user-box">
+                                        <div class="u-img"><img src="{% static 'images/users/1.jpg' %}" alt="user">
+                                        </div>
+                                        <div class="u-text">
+                                            <h4>{{ user.username }}</h4>
+                                            <p class="text-muted">{{ user.email }}</p><a href="profile.html"
+                                                                                         class="btn btn-rounded btn-danger btn-sm">View
+                                            Profile</a></div>
+                                    </div>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/logout"><i class="fa fa-power-off"></i> Logout</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- ============================================================== -->
+                    <!-- Language -->
+                    <!-- ============================================================== -->
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- ============================================================== -->
+    <!-- End Topbar header -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    <aside class="left-sidebar">
+        <!-- Sidebar scroll-->
+        <div class="scroll-sidebar">
+            <!-- User profile -->
+            <div class="user-profile"
+                 style="background: url({% static 'images/background/user-info.jpg' %}) no-repeat;">
+                <!-- User profile image -->
+                <div class="profile-img"><img src="{% static 'images/users/profile.png' %}" alt="user"/></div>
+                <!-- User profile text-->
+                <div class="profile-text"><a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown"
+                                             role="button" aria-haspopup="true" aria-expanded="true">{{ user.username
+                    }}</a>
+                    <div class="dropdown-menu animated flipInY"><a href="#" class="dropdown-item"><i
+                            class="ti-user"></i> My Profile</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="/logout" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a></div>
+                </div>
+            </div>
+            <!-- End User profile text-->
+            <!-- Sidebar navigation-->
+            <nav class="sidebar-nav">
+                <ul id="sidebarnav">
+                    <li class="nav-small-cap">MENU</li>
+                    <li><a class="has-arrow waves-effect waves-dark" href="/" aria-expanded="false"><i
+                            class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
+                    </li>
+                    <li><a class="has-arrow waves-effect waves-dark" href="/new" aria-expanded="false"><i
+                            class="mdi mdi-laptop-windows"></i><span class="hide-menu">New report</span></a>
+                    </li>
+                    <li><a class="has-arrow waves-effect waves-dark" href="/manage" aria-expanded="false"><i
+                            class="mdi mdi-bullseye"></i><span class="hide-menu">Manage reports</span></a>
+                    </li>
+                    <li><a class="has-arrow waves-effect waves-dark" href="/comparison" aria-expanded="false"><i
+                            class="mdi mdi-calculator"></i><span class="hide-menu">Comparison </span></a>
+                    </li>
+                    <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
+                            class="mdi mdi-file-chart"></i><span class="hide-menu">Graphs</span></a>
+                        <ul aria-expanded="false" class="collapse">
+                            <li><a href="/graphs/3d">3d</a></li>
+                            <li><a href="/graphs/2d">2d</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <!-- End Sidebar navigation -->
+        </div>
+        <!-- End Sidebar scroll-->
+        <!-- Bottom points-->
+        <div class="sidebar-footer">
+            <!-- item--><a href="" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
+            <!-- item--><a href="" class="link" data-toggle="tooltip" title="Contact Us"><i
+                class="mdi mdi-gmail"></i></a>
+            <!-- item--><a href="/logout" class="link" data-toggle="tooltip" title="Logout"><i
+                class="mdi mdi-power"></i></a></div>
+        <!-- End Bottom points-->
+    </aside>
+    <!-- ============================================================== -->
+    <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Page wrapper  -->
+    <!-- ============================================================== -->
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="row page-titles">
+                <div class="col-md-5 col-8 align-self-center">
+                    <h3 class="text-themecolor">Comparison</h3>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                        <li class="breadcrumb-item active">Comparison</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            Select method
+                            <select id="selector" class="selectpicker m-b-20 m-r-10" data-style="btn-primary">
+                                <option data-tokens="linearModel" value="linearModel">Linear Regression</option>
+                                <option data-tokens="svmModel" value="svmModel">SVM</option>
+                            </select>
+                            <button type="button" id="apply_btn" onclick="createTable();"
+                                    class="btn waves-effect waves-light btn-primary">Draw
+                            </button>
+                            <br>
+                            <span id="total_accuracy"></span>
+                        </div>
                     </div>
                 </div>
-                <!-- ============================================================== -->
-                <!-- End Bread crumb and right sidebar toggle -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
-                <style>
+            </div>
+            <style>
                     table {
                         color: #333;
                         font-family: Helvetica, Arial, sans-serif;
@@ -273,49 +319,16 @@
 
                     tr td:hover { background: #ADB0B2; color: #FFF; }
                     /* Hover cell effect! */
-                </style>
+
+            </style>
 
 
-                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-                <script type="text/javascript">
-                function createTable() {
-
-                        $.ajax({
-                            url: '/linearReg',  //please to modify the url like this: /ControllerName/ActionName
-                            dataType: "json",
-                            success: function (data) {
-                                var trHTML = '';
-                                $.each(data, function (i, item) {
-                                    if (i % 2 == 0)
-                                        trHTML += '<tr><td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px;">' + item.title + "</span>" + '</td><td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px;">' + item.output + "</span>" + '</td><td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px;">' + item.revenue + "</span>" + '</td><td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px;">' + item.percent + "%" + "</span>" + '</td></tr>' ;
-                                    else
-                                        trHTML += '<tr><td><span style="font-family:Assistant; font-size:20px;">' + item.title + "</span>" + '</td><td><span style="font-family:Assistant; font-size:20px;">' + item.output + "</span>" + '</td><td><span style="font-family:Assistant; font-size:20px;">' + item.revenue + "</span>" + '</td><td><span style="font-family:Assistant; font-size:20px;">' + item.percent + "%" + "</span>" + '</td></tr>' ;
-                                });
-                                $('#myTable').append(trHTML);
-
-                            }
-                        });
-
-                    }
-                </script>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 
-               <br/>
-                <!--<img style="width: 50px; height: 50px; vertical-align:middle" alt="Image description" src="{% static 'images/movieName.png' %}" align="left" hspace="15"/> -->
-                                <table id="myTable">
-
-                                    <tr>
-                                        <th><span style="font-family:Assistant; color:black; font-weight: bold; font-size:20px;">Title<span/></th>
-                                        <th><span style="font-family:Assistant; color:black; font-weight: bold; font-size:20px;">Forecast<span/></th>
-                                        <th><span style="font-family:Assistant; color:black; font-weight: bold; font-size:20px;">Actual<span/></th>
-                                        <th><span style="font-family:Assistant; color:black; font-weight: bold; font-size:20px;">Percent<span/></th>
-                                    </tr>
-
-                                    <script>createTable();</script>
-
-                                </table>
-
+            <br/>
+            <!--<img style="width: 50px; height: 50px; vertical-align:middle" alt="Image description" src="{% static 'images/movieName.png' %}" align="left" hspace="15"/> -->
+            <table id="myTable" hidden>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
@@ -325,7 +338,8 @@
                 <!-- .right-sidebar -->
                 <div class="right-sidebar">
                     <div class="slimscrollright">
-                        <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
+                        <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span>
+                        </div>
                         <div class="r-panel-body">
                             <ul id="themecolors" class="m-t-20">
                                 <li><b>With Light sidebar</b></li>
@@ -336,12 +350,17 @@
                                 <li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
                                 <li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
                                 <li class="d-block m-t-30"><b>With Dark sidebar</b></li>
-                                <li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme">7</a></li>
-                                <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
+                                <li><a href="javascript:void(0)" data-theme="default-dark"
+                                       class="default-dark-theme">7</a></li>
+                                <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a>
+                                </li>
                                 <li><a href="javascript:void(0)" data-theme="red-dark" class="red-dark-theme">9</a></li>
-                                <li><a href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme">10</a></li>
-                                <li><a href="javascript:void(0)" data-theme="purple-dark" class="purple-dark-theme">11</a></li>
-                                <li><a href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme ">12</a></li>
+                                <li><a href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme">10</a>
+                                </li>
+                                <li><a href="javascript:void(0)" data-theme="purple-dark"
+                                       class="purple-dark-theme">11</a></li>
+                                <li><a href="javascript:void(0)" data-theme="megna-dark"
+                                       class="megna-dark-theme ">12</a></li>
                             </ul>
                         </div>
                     </div>
@@ -349,60 +368,137 @@
                 <!-- ============================================================== -->
                 <!-- End Right sidebar -->
                 <!-- ============================================================== -->
-            </div>
-            <!-- ============================================================== -->
-            <!-- End Container fluid  -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
-            <footer class="footer"> © 2018 Movie Prediction System - Avi Bouchris, Emil Gelman </footer>
-            <!-- ============================================================== -->
-            <!-- End footer -->
-            <!-- ============================================================== -->
         </div>
         <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <footer class="footer"> © 2018 Movie Prediction System - Avi Bouchris, Emil Gelman</footer>
+        <!-- ============================================================== -->
+        <!-- End footer -->
         <!-- ============================================================== -->
     </div>
     <!-- ============================================================== -->
-    <!-- End Wrapper -->
+    <!-- End Page wrapper  -->
     <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
-    <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="{% static 'plugins/bootstrap/js/popper.min.js' %}"></script>
-    <script src="{% static 'plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+</div>
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- All Jquery -->
+<!-- ============================================================== -->
+<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="{% static 'plugins/bootstrap/js/popper.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap/js/bootstrap.min.js' %}"></script>
 
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="{% static 'js/jquery.slimscroll.js' %}"></script>
-    <!--Wave Effects -->
-    <script src="{% static 'js/waves.js' %}"></script>
-    <!--Menu sidebar -->
-    <script src="{% static 'js/sidebarmenu.js' %}"></script>
-    <!--stickey kit -->
-    <script src="{% static 'plugins/sticky-kit-master/dist/sticky-kit.min.js' %}"></script>
-    <script src="{% static 'plugins/sparkline/jquery.sparkline.min.js' %}"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="{% static 'js/jquery.slimscroll.js' %}"></script>
+<!--Wave Effects -->
+<script src="{% static 'js/waves.js' %}"></script>
+<!--Menu sidebar -->
+<script src="{% static 'js/sidebarmenu.js' %}"></script>
+<!--stickey kit -->
+<script src="{% static 'plugins/sticky-kit-master/dist/sticky-kit.min.js' %}"></script>
+<script src="{% static 'plugins/sparkline/jquery.sparkline.min.js' %}"></script>
 
-    <!--Custom JavaScript -->
-    <script src="{% static 'js/custom.min.js' %}"></script>
-    <!-- ============================================================== -->
-    <!-- This page plugins -->
-    <!-- ============================================================== -->
-    <!-- chartist chart -->
-    <script src="{% static 'plugins/chartist-js/dist/chartist.min.js' %}"></script>
-    <script src="{% static 'plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js' %}"></script>
-    <!--c3 JavaScript -->
-    <script src="{% static 'plugins/d3/d3.min.js' %}"></script>
-    <script src="{% static 'plugins/c3-master/c3.min.js' %}"></script>
-    <!-- Chart JS -->
-    <script src="{% static 'js/dashboard1.js' %}"></script>
-    <!-- ============================================================== -->
-    <!-- Style switcher -->
-    <!-- ============================================================== -->
-    <script src="{% static 'plugins/styleswitcher/jQuery.style.switcher.js' %}"></script>
+<!--Custom JavaScript -->
+<script src="{% static 'js/custom.min.js' %}"></script>
+<!-- ============================================================== -->
+<!-- This page plugins -->
+<!-- ============================================================== -->
+<!-- chartist chart -->
+<script src="{% static 'plugins/chartist-js/dist/chartist.min.js' %}"></script>
+<script src="{% static 'plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js' %}"></script>
+<!--c3 JavaScript -->
+<script src="{% static 'plugins/d3/d3.min.js' %}"></script>
+<script src="{% static 'plugins/c3-master/c3.min.js' %}"></script>
+<!-- Chart JS -->
+<script src="{% static 'js/dashboard1.js' %}"></script>
+<!-- ============================================================== -->
+<!-- Style switcher -->
+<!-- ============================================================== -->
+<script src="{% static 'plugins/styleswitcher/jQuery.style.switcher.js' %}"></script>
 </body>
 </html>
+{% endblock %}
+{% block javascript %}
+<script>
+function createTable() {
+    document.getElementById("apply_btn").disabled = true;
+	var type = document.getElementById("selector").value;
+	type.trim();
+	type = '/' + type;
+	$.ajax({
+url: type,
+dataType: "json",
+success: function (data) {
+			document.getElementById('myTable').hidden =false;
+			var trHTML = '';
+			if (type === '/linearModel')
+			{
+				var trHTML = '<tr><th><span style="font-family:Assistant; color:black; font-weight: bold; font-size:20px;">Title<span/></th>'+
+				'<th><span style="font-family:Assistant; color:black; font-weight: bold; font-size:20px;">Forecast<span/></th>'+
+				'<th><span style="font-family:Assistant; color:black; font-weight: bold; font-size:20px;">Actual<span/></th>'+
+				'<th><span style="font-family:Assistant; color:black; font-weight: bold; font-size:20px;">Percent<span/></th>'+
+				'</tr>';
+				$.each(data, function (i, item) {
+					if (i % 2 == 0)
+					trHTML += '<tr><td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px;">' + item.title + "</span>" + '</td><td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px;">' + item.output + "</span>" + '</td><td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px;">' + item.revenue + "</span>" + '</td><td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px;">' + item.percent + "%" + "</span>" + '</td></tr>' ;
+					else
+					trHTML += '<tr><td><span style="font-family:Assistant; font-size:20px;">' + item.title + "</span>" + '</td><td><span style="font-family:Assistant; font-size:20px;">' + item.output + "</span>" + '</td><td><span style="font-family:Assistant; font-size:20px;">' + item.revenue + "</span>" + '</td><td><span style="font-family:Assistant; font-size:20px;">' + item.percent + "%" + "</span>" + '</td></tr>' ;
+				});
+			}
+			else if (type === '/svmModel')
+			{
+				var trHTML = '<tr><th><span style="font-family:Assistant; color:black; font-weight: bold; font-size:20px;">Title<span/></th>'+
+				'<th><span style="font-family:Assistant; color:black; font-weight: bold; font-size:20px;">Forecast<span/></th>'+
+				'<th><span style="font-family:Assistant; color:black; font-weight: bold; font-size:20px;">Actual<span/></th>'+
+				'<th><span style="font-family:Assistant; color:black; font-weight: bold; font-size:20px;">Correct<span/></th>'+
+				'</tr>';
+				$.each(data, function (i, item) {
+					let correct = item.output == item.revenue ? 1:0;
+					if (i % 2 == 0)
+					trHTML += '<tr><td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px;">' + item.title + "</span>" + '</td><td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px;">' + item.output + "</span>" + '</td><td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px;">' + item.revenue + "</span>" + '</td><td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px;">' + correct + "</span>" + '</td></tr>' ;
+					else
+					trHTML += '<tr><td><span style="font-family:Assistant; font-size:20px;">' + item.title + "</span>" + '</td><td><span style="font-family:Assistant; font-size:20px;">' + item.output + "</span>" + '</td><td><span style="font-family:Assistant; font-size:20px;">' + item.revenue + "</span>" + '</td><td><span style="font-family:Assistant; font-size:20px;">' + correct + "</span>" + '</td></tr>' ;
+				});
+			}
+			$('#myTable').html(trHTML);
+			var sum=0;
+			$("tr").each(function() {
+				if (type === '/linearModel') {
+					var value = Math.abs((this.children[3].textContent).slice(0,-1));
+				}
+				else if (type === '/svmModel')
+				{
+					var value = this.children[3].textContent;
+				}
+				// add only if the value is number
+				if(!isNaN(value) && value.length != 0) {
+					sum += parseFloat(value);
+				}
+
+			});
+			if (type === '/linearModel')
+			{
+				mean = 100-(sum/10);
+			}
+			else if (type === '/svmModel')
+			{
+				mean = (sum/20)*100;
+			}
+			document.getElementById('total_accuracy').innerHTML="Total accuracy: " + Math.abs(mean) + "%";
+			document.getElementById("apply_btn").disabled = false;
+
+		}
+	});
+
+
+}
+
+</script>
 {% endblock %}
