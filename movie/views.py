@@ -30,8 +30,8 @@ def signup(request):
 def new(request):
     return render(request, 'new.html')
 
-def manage(request):
-    return render(request, 'manage.html')
+def summary(request):
+    return render(request, 'summary.html')
 
 def details(request):
     return render(request, 'details.html')
