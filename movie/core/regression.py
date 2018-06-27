@@ -127,6 +127,6 @@ def linearModel(request):
 
     resultDataframe = resultDataframe.drop(resultDataframe[resultDataframe.percent > 200].index)
     resultDataframe = resultDataframe.drop(resultDataframe[resultDataframe.percent < -200].index)
-    resultDataframe = resultDataframe.sample(n=10)
+    resultDataframe = resultDataframe.sample(n=20)
     output = resultDataframe.to_json(orient='records')
     return HttpResponse(output, content_type="application/json")

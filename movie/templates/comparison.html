@@ -83,23 +83,17 @@
                 <!-- ============================================================== -->
                 <!-- toggle and nav items -->
                 <!-- ============================================================== -->
-                <ul class="navbar-nav mr-auto mt-md-0">
-                    <!-- This is  -->
-                    <li class="nav-item"><a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark"
-                                            href="javascript:void(0)"><i class="mdi mdi-menu"></i></a></li>
-                    <li class="nav-item"><a
-                            class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark"
-                            href="javascript:void(0)"><i class="ti-menu"></i></a></li>
-                    <!-- ============================================================== -->
-                    <!-- Search -->
-                    <!-- ============================================================== -->
-                    <li class="nav-item hidden-sm-down search-box"><a
-                            class="nav-link hidden-sm-down text-muted waves-effect waves-dark"
-                            href="javascript:void(0)"><i class="ti-search"></i></a>
-                        <form class="app-search">
-                            <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i
-                                class="ti-close"></i></a></form>
-                    </li>
+                    <ul class="navbar-nav mr-auto mt-md-0">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                        <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item hidden-sm-down search-box"> <a class="nav-link hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
+                            <form class="app-search">
+                                <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
+                        </li>
                     <!-- ============================================================== -->
                     <!-- Messages -->
                     <!-- ============================================================== -->
@@ -163,62 +157,50 @@
     <!-- ============================================================== -->
     <!-- Left Sidebar - style you can find in sidebar.scss  -->
     <!-- ============================================================== -->
-    <aside class="left-sidebar">
-        <!-- Sidebar scroll-->
-        <div class="scroll-sidebar">
-            <!-- User profile -->
-            <div class="user-profile"
-                 style="background: url({% static 'images/background/user-info.jpg' %}) no-repeat;">
-                <!-- User profile image -->
-                <div class="profile-img"><img src="{% static 'images/users/profile.png' %}" alt="user"/></div>
-                <!-- User profile text-->
-                <div class="profile-text"><a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown"
-                                             role="button" aria-haspopup="true" aria-expanded="true">{{ user.username
-                    }}</a>
-                    <div class="dropdown-menu animated flipInY"><a href="#" class="dropdown-item"><i
-                            class="ti-user"></i> My Profile</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="/logout" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a></div>
+     <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- User profile -->
+                <div class="user-profile" style="background: url({% static 'images/background/user-info.jpg' %}) no-repeat;">
+                    <!-- User profile image -->
+                    <div class="profile-img"> <img src="{% static 'images/users/profile.png' %}" alt="user" /> </div>
+                    <!-- User profile text-->
+                    <div class="profile-text"> <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">{{ user.username }}</a>
+                        <div class="dropdown-menu animated flipInY"> <a href="#" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
+                            <div class="dropdown-divider"></div> <a href="/logout" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a> </div>
+                    </div>
                 </div>
+                <!-- End User profile text-->
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="nav-small-cap">MENU</li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="/" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
+                        </li>
+                        <li class="has-arrow waves-effect waves-dark"> <a class="has-arrow waves-effect waves-dark" href="/new" aria-expanded="false"><i class="mdi mdi-laptop-windows"></i><span class="hide-menu">New report</span></a>
+                        </li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="/manage" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">Manage reports</span></a>
+                        </li>
+                        <li class="active"> <a class="has-arrow waves-effect waves-dark" href="/comparison" aria-expanded="false"><i class="mdi mdi-calculator"></i><span class="hide-menu">Comparison </span></a>
+                        <li/>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file-chart"></i><span class="hide-menu">Graphs</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="/graphs/3d">3d</a></li>
+                                <li><a href="/graphs/2d">2d</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
             </div>
-            <!-- End User profile text-->
-            <!-- Sidebar navigation-->
-            <nav class="sidebar-nav">
-                <ul id="sidebarnav">
-                    <li class="nav-small-cap">MENU</li>
-                    <li><a class="has-arrow waves-effect waves-dark" href="/" aria-expanded="false"><i
-                            class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
-                    </li>
-                    <li><a class="has-arrow waves-effect waves-dark" href="/new" aria-expanded="false"><i
-                            class="mdi mdi-laptop-windows"></i><span class="hide-menu">New report</span></a>
-                    </li>
-                    <li><a class="has-arrow waves-effect waves-dark" href="/manage" aria-expanded="false"><i
-                            class="mdi mdi-bullseye"></i><span class="hide-menu">Manage reports</span></a>
-                    </li>
-                    <li><a class="has-arrow waves-effect waves-dark" href="/comparison" aria-expanded="false"><i
-                            class="mdi mdi-calculator"></i><span class="hide-menu">Comparison </span></a>
-                    </li>
-                    <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
-                            class="mdi mdi-file-chart"></i><span class="hide-menu">Graphs</span></a>
-                        <ul aria-expanded="false" class="collapse">
-                            <li><a href="/graphs/3d">3d</a></li>
-                            <li><a href="/graphs/2d">2d</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-            <!-- End Sidebar navigation -->
-        </div>
-        <!-- End Sidebar scroll-->
-        <!-- Bottom points-->
-        <div class="sidebar-footer">
-            <!-- item--><a href="" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
-            <!-- item--><a href="" class="link" data-toggle="tooltip" title="Contact Us"><i
-                class="mdi mdi-gmail"></i></a>
-            <!-- item--><a href="/logout" class="link" data-toggle="tooltip" title="Logout"><i
-                class="mdi mdi-power"></i></a></div>
-        <!-- End Bottom points-->
-    </aside>
+            <!-- End Sidebar scroll-->
+            <!-- Bottom points-->
+            <div class="sidebar-footer">
+                <!-- item--><a href="" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
+                <!-- item--><a href="" class="link" data-toggle="tooltip" title="Contact Us"><i class="mdi mdi-gmail"></i></a>
+                <!-- item--><a href="/logout" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a> </div>
+            <!-- End Bottom points-->
+        </aside>
     <!-- ============================================================== -->
     <!-- End Left Sidebar - style you can find in sidebar.scss  -->
     <!-- ============================================================== -->
@@ -321,13 +303,7 @@
                     /* Hover cell effect! */
 
             </style>
-
-
-            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-
             <br/>
-            <!--<img style="width: 50px; height: 50px; vertical-align:middle" alt="Image description" src="{% static 'images/movieName.png' %}" align="left" hspace="15"/> -->
             <table id="myTable" hidden>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
@@ -485,7 +461,7 @@ success: function (data) {
 			});
 			if (type === '/linearModel')
 			{
-				mean = 100-(sum/10);
+				mean = 100-(sum/20);
 			}
 			else if (type === '/svmModel')
 			{

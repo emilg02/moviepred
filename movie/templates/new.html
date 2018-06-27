@@ -221,10 +221,11 @@
                 <!-- ============================================================== -->
                 <!-- Row -->
                 <div class="row">
-                    <h3 class="card-title m-b-0 dl">Choose a movie:</h3>
+                    <h3 id="choose_title" class="card-title m-b-0 dl">Choose a movie:</h3>
                         <div class="card-columns el-element-overlay">
                         <div id="movie-container"></div>
                         </div>
+                        <span id="error_msg"></span>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
@@ -342,7 +343,12 @@
                     '</div>';
                     }
                     $('#movie-container').html(html);
-        }});
+        },
+        timeout : 10000,
+        error: function (xhr, textStatus, errorThrown) {
+           document.getElementById('choose_title').innerHTML="Error getting list of latest movies: " + errorThrown;
+        },
+        });
 
 
 });

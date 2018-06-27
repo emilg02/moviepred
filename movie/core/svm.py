@@ -82,7 +82,6 @@ def classifier(row):
 
 def svmModel(request):
     cwd = os.getcwd()
-    print(cwd)
     # df = pd.read_csv(cwd + "/movie/data/movies_new.csv")
     df = pd.read_csv(cwd + "/movie/data/class.csv")
     df = df.dropna()
@@ -109,8 +108,6 @@ def svmModel(request):
     clf.predict(X_test)
     output = clf.predict(X_test)
     output = np.rint(output)
-    print(output)
-
 
     #Merge all
     resultDataframe = title
