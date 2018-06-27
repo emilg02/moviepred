@@ -11,7 +11,13 @@ from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 from sklearn import linear_model
-
+from sklearn import svm
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score
+from mlxtend.plotting import plot_decision_regions
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
+from sklearn.cross_validation import train_test_split
 
 def plot3d(request):
     cwd = os.getcwd()
@@ -110,6 +116,46 @@ def plot2d(request):
     buf = io.BytesIO()
     plt.savefig(buf, format='png')
     plt.close(fig)
+    response = HttpResponse(buf.getvalue(), content_type='image/png')
+    return response
+
+def plotsvm(request):
+    cwd = os.getcwd()
+    df = pd.read_csv(cwd + "/movie/data/class.csv")
+    df =df.dropna()
+
+    X=df
+    y=X['revenue_class']
+    X = df[['vote_count','budget']]
+
+    scaler=StandardScaler()
+    X = scaler.fit_transform(X)
+    y = np.array(y).astype(int)
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.3, random_state =190)
+
+
+    ### SVM
+    clf = svm.SVC()
+    clf.set_params(C=5)
+    clf.fit(X_train, y_train)
+    clf.predict(X_test)
+
+
+
+    plot_decision_regions(X=X,
+                          y=y,
+                          clf=clf,
+                          legend=2)
+
+    # Update plot object with X/Y axis labels and Figure Title
+    plt.xlabel(X[0], size=14)
+    plt.ylabel(X[1], size=14)
+    plt.title('SVM Decision Region Boundary', size=16)
+    plt.xlabel('vote_count')
+    plt.ylabel('budget')
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png')
     response = HttpResponse(buf.getvalue(), content_type='image/png')
     return response
 

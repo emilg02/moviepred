@@ -15,7 +15,7 @@
     <title>Movie Prediction</title>
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,700" rel="stylesheet">
+    
     <!-- chartist CSS -->
     <link href="{% static 'plugins/chartist-js/dist/chartist.min.css' %}" rel="stylesheet">
     <link href="{% static 'plugins/chartist-js/dist/chartist-init.css' %}" rel="stylesheet">
@@ -52,7 +52,7 @@
         <header class="topbar">
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
                 <!-- ============================================================== -->
-                <!-- Logo -->
+                <!--  -->
                 <!-- ============================================================== -->
                 <div class="navbar-header">
                     <a class="navbar-brand" href="/">
@@ -166,12 +166,12 @@
                         <li class="nav-small-cap">MENU</li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="/" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
                         </li>
-                        <li class="active"> <a class="has-arrow waves-effect waves-dark" href="/new" aria-expanded="false"><i class="mdi mdi-laptop-windows"></i><span class="hide-menu">New report</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="/new" aria-expanded="false"><i class="mdi mdi-laptop-windows"></i><span class="hide-menu">New report</span></a>
                         </li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="/manage" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">Manage reports</span></a>
                         </li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="/comparison" aria-expanded="false"><i class="mdi mdi-calculator"></i><span class="hide-menu">Comparison </span></a>
-                        <li/>
+                        </li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file-chart"></i><span class="hide-menu">Graphs</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="/graphs/3d">3d</a></li>
@@ -207,10 +207,10 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor">New report</h3>
+                        <h3 class="text-themecolor">Dashboard</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">New report</li>
+                            <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
                     </div>
                 </div>
@@ -220,13 +220,16 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <!-- Row -->
                 <div class="row">
-                    <h3 id="choose_title" class="card-title m-b-0 dl">Choose a movie:</h3>
-                        <div class="card-columns el-element-overlay">
-                        <div id="movie-container"></div>
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="text-themecolor">SVM Graph:</h3><br>
+                                <img id="loading_img" src="{% static 'images/loading.gif' %}" height="60" width="60"/>
+                <img id="svm_img" src="/graphs/svm.png" />
+                            </div>
                         </div>
-                        <span id="error_msg"></span>
+                    </div>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
@@ -315,43 +318,20 @@
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="{% static 'plugins/styleswitcher/jQuery.style.switcher.js' %}"></script>
-    <script src="{% static 'plugins/Magnific-Popup-master/dist/jquery.magnific-popup.min.js' %}"></script>
-    <script src="{% static 'plugins/Magnific-Popup-master/dist/jquery.magnific-popup-init.js' %}"></script>
 </body>
 
 </html>
 {% endblock %}
 {% block javascript %}
   <script>
-    $(document).ready(function(){
-        $.ajax({ url: "/getupcoming",
-        context: document.body,
-        dataType: 'json',
-        success: function(res){
-                    var html ='';
-                    for (var i = 0; i < res.results.length; i++) {
-                    var imgsrc = '"http://image.tmdb.org/t/p/w300' + res.results[i].poster_path + '"';
-                    var link = '"/details?movie=' + res.results[i].id + '"';
-                    html+='<div class="card">'+
-                        '<div class="el-card-item">'+
-                            '<div class="el-card-avatar el-overlay-1">'+
-                                '<a class="image-popup-vertical-fit" href='+link+'> <img src='+imgsrc+' alt="user" /> </a>'+
-                            '</div>'+
-                            '<div class="el-card-content">'+
-                                '<h3 class="box-title">'+ res.results[i].title +'</h3>'+
-                                '<br/> </div>'+
-                        '</div>'+
-                    '</div>';
-                    }
-                    $('#movie-container').html(html);
-        },
-        timeout : 10000,
-        error: function (xhr, textStatus, errorThrown) {
-           document.getElementById('choose_title').innerHTML="Error getting list of latest movies: " + errorThrown;
-        },
-        });
+ $(document).ready( function() {
+    $('#loading_img').show();
 
-
-});
-  </script>
+    // main image loaded ?
+    $('#svm_img').on('load', function(){
+      // hide/remove the loading image
+      $('#loading_img').hide();
+    });
+  });
+</script>
 {% endblock %}

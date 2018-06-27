@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^result/$', views.result, name='result'),
     url(r'^graphs/2d$', views.graph2d, name='graph2d'),
     url(r'^graphs/3d$', views.graph3d, name='graph3d'),
+    url(r'^graphs/svm$', views.graphsvm, name='graphsvm'),
     url(r'^comparison/$', views.comparisonTable, name='comparisonTable'),
 
     ##API##
@@ -32,5 +33,6 @@ urlpatterns = [
     ##GRAPHS##
     url(r'^graphs/3d.png/$', graph.plot3d, name='plot3d'),
     url(r'^graphs/2d.png/$', graph.plot2d, name='plot2d'),
+    url(r'^graphs/svm.png/$', graph.plotsvm, name='plotsvm'),
 
 ]

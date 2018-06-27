@@ -46,6 +46,9 @@ def graph2d(request):
 def graph3d(request):
     return render(request, 'graphs/3d.html')
 
+def graphsvm(request):
+    return render(request, 'graphs/svm.html')
+
 def comparisonTable(request):
     return render(request, 'comparison.html')
 
