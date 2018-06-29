@@ -455,8 +455,8 @@
                 movie.vote_count = res.vote_count;
                 movie.vote_average = res.vote_average;
                 document.getElementById('movie_name').innerHTML=res.title;
-                document.getElementById('movie_budget').innerHTML=res.budget;
-                document.getElementById('movie_popularity').innerHTML=res.popularity;
+                document.getElementById('movie_budget').innerHTML=res.budget.toLocaleString('en');
+                document.getElementById('movie_popularity').innerHTML=res.popularity.toFixed(2);
                 document.getElementById('movie_votecount').innerHTML=res.vote_count;
                 document.getElementById('movie_voteaverage').innerHTML=res.vote_average;
 
@@ -468,7 +468,7 @@
         dataType: 'json',
         success: function(res){
                     movie.sentiment = res;
-                    document.getElementById('movie_sentiment').innerHTML=res;
+                    document.getElementById('movie_sentiment').innerHTML=res.toFixed(2);
                     }
 	});
 
@@ -481,7 +481,6 @@
 
 	$(document).ajaxStop(function() {
     // all api calls have finished, enable predict button
-    alert('done');
     document.getElementById("predict").disabled = false;
     document.getElementById("predict").className = "btn waves-effect waves-light btn-primary";
     });

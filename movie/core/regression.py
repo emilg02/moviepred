@@ -2,13 +2,13 @@ import statsmodels.formula.api as smf
 import numpy as np
 import pandas as pd
 import json
-from django.shortcuts import render, redirect
 from sklearn.model_selection import train_test_split
 from sklearn import linear_model
 from django.http import HttpResponse
-import random
-import numpy.ma as ma
 import os
+
+
+
 
 def calculate(request):
     movie = request.GET['movie']
@@ -16,13 +16,9 @@ def calculate(request):
     vote_count = request.GET['vote_count']
     vote_average = request.GET['vote_average']
     budget = request.GET['budget']
-    print (popularity)
-    print (vote_count)
-    print (vote_average)
-    print (budget)
     cwd = os.getcwd()
-    print(cwd)
     data = pd.read_csv(cwd + "/movie/data/movies_new.csv")
+
     #Create train dataframes
     msk = np.random.rand(len(data)) < 0.8
     train = data[msk]
@@ -49,12 +45,14 @@ def calculate(request):
     model = forward_selected(train, columns,'revenue')
 
     model_param = model.params
-    # print(model.summary())
     test_predict = model.predict(test)
     res = model.predict(pd.DataFrame({'popularity': [float(popularity)], 'vote_average': [float(vote_average)], 'vote_count': [int(vote_count)], 'budget': [int(budget)]}))
     return HttpResponse(json.dumps(res[0]), content_type="application/json")
 
 
+
+
+#This is the implementation of the stepwise regression
 def forward_selected(data, columns, response):
     remaining = columns
     selected = []
@@ -66,7 +64,6 @@ def forward_selected(data, columns, response):
         scores_with_candidates = []
         for candidate in remaining:
             formula = "{} ~ {}".format(response, ' + '.join(selected + [candidate]))
-            #print (formula)
             score = smf.ols(formula, data).fit().aic
             scores_with_candidates.append((score, candidate))
         scores_with_candidates.sort()
@@ -84,11 +81,11 @@ def forward_selected(data, columns, response):
     return model
 
 
+
+#In this function we orginize our data and perform prediction
 def linearModel(request):
     cwd = os.getcwd()
     Dataset = pd.read_csv(cwd + "/movie/data/movies_new.csv")
-    #Train = pd.read_csv(cwd + "/movie/data/LinearTrainingSet.csv")
-    # print df.head()
 
     #We split our dataset into training and testing sets
     Train, Test = train_test_split(Dataset, test_size=0.3, shuffle=False)
@@ -118,6 +115,7 @@ def linearModel(request):
     resultDataframe['revenue'] = y_Test
 
     #The formula to calculate the error : MPE = ((Actual – Forecast) / Actual) x 100)
+    #If value is negative, it means that the actual value was X percent less than what was forecasted
     forecast = pd.DataFrame()
     forecast['percent'] = ((resultDataframe['revenue'] - resultDataframe['output']) / resultDataframe['revenue']) * 100
     resultDataframe['percent'] = forecast.astype(int)

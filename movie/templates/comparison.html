@@ -423,6 +423,9 @@ success: function (data) {
 				'<th><span style="font-family:Assistant; color:black; font-weight: bold; font-size:20px;">Percent<span/></th>'+
 				'</tr>';
 				$.each(data, function (i, item) {
+				    item.output = Math.abs(item.output)
+				    item.output = item.output.toLocaleString('en')
+				    item.revenue = item.revenue.toLocaleString('en')
 					if (i % 2 == 0)
 					trHTML += '<tr><td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px;">' + item.title + "</span>" + '</td><td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px;">' + item.output + "</span>" + '</td><td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px;">' + item.revenue + "</span>" + '</td><td bgcolor="#FEFEFE"><span style="font-family:Assistant; font-size:20px;">' + item.percent + "%" + "</span>" + '</td></tr>' ;
 					else
@@ -468,7 +471,7 @@ success: function (data) {
 			{
 				mean = (sum/20)*100;
 			}
-			document.getElementById('total_accuracy').innerHTML="Total accuracy: " + Math.abs(mean) + "%";
+			document.getElementById('total_accuracy').innerHTML="Total accuracy: " + Math.abs(mean).toFixed(2) + "%";
 			document.getElementById("apply_btn").disabled = false;
 
 		}

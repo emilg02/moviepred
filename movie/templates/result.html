@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 {% load static %}
 {% block content %}
 <html lang="en">
@@ -428,19 +428,21 @@ $(document).ready(function(){
     var url_string = window.location.href;
     var url = new URL(url_string);
     var movieid = url.searchParams.get("movie");
-    var movie_budget = url.searchParams.get("budget");
+    var movie_budget = Number(url.searchParams.get("budget")).toLocaleString('en');
     var movie_popularity = url.searchParams.get("popularity");
-    var movie_votecount = url.searchParams.get("vote_count");
+    var movie_votecount = Number(url.searchParams.get("vote_count")).toLocaleString('en');
     var movie_voteaverage = url.searchParams.get("vote_average");
-    var movie_prediction = url.searchParams.get("result");
-    var movie_sentiment = url.searchParams.get("sentiment");
+    var movie_prediction = Number(url.searchParams.get("result"));
+    movie_prediction = Math.abs(movie_prediction).toFixed(2);
+    movie_prediction = Number(movie_prediction).toLocaleString('en');
+    var movie_sentiment = Number(url.searchParams.get("sentiment"));
                 document.getElementById('movie_name').innerHTML=movieid;
                 document.getElementById('movie_budget').innerHTML=movie_budget;
                 document.getElementById('movie_popularity').innerHTML=movie_popularity;
                 document.getElementById('movie_votecount').innerHTML=movie_votecount;
                 document.getElementById('movie_voteaverage').innerHTML=movie_voteaverage;
                 document.getElementById('movie_prediction').innerHTML=movie_prediction;
-                document.getElementById('movie_sentiment').innerHTML=movie_sentiment;
+                document.getElementById('movie_sentiment').innerHTML=Math.abs(movie_sentiment).toFixed(2);
 
 
 	});
