@@ -24,9 +24,26 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 </head>
 
 <body>
+
+    {% if form.errors %}
+            <!-- Error messaging -->
+            <div id="errors">
+                <div class="inner">
+                    <p>There were some errors in the information you entered. Please correct the following:</p>
+                    {{ form.non_field_errors }}
+                    <ul>
+                        {% for field in form %}
+                            {% if field.errors %}<li>{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <!-- /Error messaging -->
+    {% endif %}
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->

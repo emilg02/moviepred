@@ -1,6 +1,8 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as login2
 from django.shortcuts import render, redirect
+from django.contrib import messages
+from django import forms
 
 from movie.forms import SignUpForm
 
@@ -20,15 +22,14 @@ def signup(request):
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
-            print (raw_password)
-            print (username)
             user = authenticate(username=username, password=raw_password)
-            print (user)
-            print (request)
             login2(request, user)
             return redirect('login')
+        else:
+            return render(request,'signup.html', {'form' : form})
     else:
         form = SignUpForm()
+
     return render(request, 'signup.html', {'form': form})
 
 def new(request):
